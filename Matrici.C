@@ -179,10 +179,9 @@ class Matrice
 	friend ostream & operator << (ostream &, Matrice );
 	Matrice operator = (Matrice mat2)
 	{	
- 			
+ 		Matrice matass(this->righe, mat2.colonne, 0.);			
  		if (this->colonne==mat2.colonne && this->righe == mat2.righe)
  		{
- 			Matrice matass(this->righe, mat2.colonne, 0.);
  			for (int i = 0; i < mat2.colonne; ++i)
  			{	
  				for (int j = 0; j < mat2.righe; ++j)
@@ -192,6 +191,8 @@ class Matrice
  			}	
  			return matass;
  		}
+ 		cout << "Operazione non consentita\n";
+ 		return matass;
 
  	}
 	Matrice operator + (Matrice mat2)
@@ -208,13 +209,10 @@ class Matrice
  			}	
  			return matsum;
  		}
- 		else 
- 		{
- 			cout << "Operazione non consentita\n";
- 			return matsum;
- 		}
  		
-
+ 		cout << "Operazione non consentita\n";
+ 		return matsum;
+ 		
  	}
 	
 	Matrice operator - (Matrice mat2)
@@ -268,8 +266,6 @@ class Matrice
 	Matrice operator * (Matrice mat2)
 	{
 		Matrice matmulti(this->righe, mat2.colonne, 0.);
-		double *a = new double [this->righe];
-		double b = 0;
  		for(int i = 0; i < this->righe; ++i)
  		{ 
         	for(int j = 0; j < mat2.colonne; ++j)
@@ -378,6 +374,7 @@ ostream & operator << (ostream &os, Matrice mat)
 			os << '\n';
 		}
 		os << '\n';
+		return os;
 	}	
 
 
@@ -401,7 +398,7 @@ int main ()
 		if (righe >= 20)
 		{
 			cout << "Sei proprio sicuro di volere una matrice così grande?\nSe sei sicuro abbi il coraggio di ridirmelo a tuo rischio e pericolo.\n";
-			colonne = InputCheck<unsigned int>();
+			righe = InputCheck<unsigned int>();
 		} 
 		//righe = colonne;
 		Matrice mat(righe);
