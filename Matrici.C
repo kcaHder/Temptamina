@@ -11,48 +11,48 @@ using namespace std;
 template <class X> void TypeSorter(X x, bool b = 0)
 {
 	const char *types[  ] { "int", "unsigned int", "double", "float", "char", "bool", "puntatore a "};
-	if(!b) std::cout << "Vorrei ricevere un input di tipo ";
+	if(!b) cout << "Vorrei ricevere un input di tipo ";
 	switch(typeid(x).name(  )[b])
 	{
 		case 'i':
 		{
-			std::cout << types[0]; // o qualsiasi altro uso intelligente
+			cout << types[0]; // o qualsiasi altro uso intelligente
 			break;
 		}
 		case 'j':
 		{
-			std::cout << types[1];
+			cout << types[1];
 			break;
 		}
 		case 'd':
 		{
-			std::cout << types[2];
+			cout << types[2];
 			break;
 		}
 		case 'f':
 		{
-			std::cout << types[3];
+			cout << types[3];
 			break;
 		}
 		case 'c':
 		{
-			std::cout << types[4];
+			cout << types[4];
 			break;
 		}
 		case 'b':
 		{
-			std::cout << types[5];
+			cout << types[5];
 			break;
 		}
 		case 'P':
 		{
-			std::cout << types[6];
+			cout << types[6];
 			TypeSorter(x, 1);
 			break;
 		}
-		default: std::cout << "\nTorna a casa\n";
+		default: cout << "\nTorna a casa\n";
 	}
-	std::cout << std::endl;
+	cout << endl;
 }
 
 // Template per la gestione degli errori di input
@@ -62,27 +62,27 @@ template <class X> X InputCheck()
 	do
 	{
 		char c;
-		if((c = std::cin.get()) == '\n') return 0;
-		else std::cin.putback(c);
-		std::cin >> Input;
-		if(std::cin.fail())
+		if((c = cin.get()) == '\n') return 0;
+		else cin.putback(c);
+		cin >> Input;
+		if(cin.fail())
 		{
-			std::cin.clear();
+			cin.clear();
 			char c;
-			do; while((c = std::cin.get()) != '\n');
-			std::cout << "\a";
-			std::cout << "Perchè mi fai questo? Riprova con un input valido.\n";
+			do; while((c = cin.get()) != '\n');
+			cout << "\a";
+			cout << "Perchè mi fai questo? Riprova con un input valido.\n";
 			TypeSorter(Input);
 			continue;
 		}
 
-		if((std::cin.get()!='\n'))
+		if((cin.get()!='\n'))
 		{
-			std::cout << "\a";
-			std::cout << "Non inserire spazi o caratteri, per piacere.. Ti ho chiesto un input valido\n";
+			cout << "\a";
+			cout << "Non inserire spazi o caratteri, per piacere.. Ti ho chiesto un input valido\n";
 			char c;
 			do;
-			while((c=std::cin.get())!='\n');
+			while((c=cin.get())!='\n');
 			continue;
 		}
 		else break;
